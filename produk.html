@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produk - ManMode.ID</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">ManMode<span>.ID</span></a>
+      <div class="nav-links">
+        <a href="index.html#beranda">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="index.html#keranjang">Keranjang</a>
+        <a href="index.html#tentang">Tentang</a>
+        <a href="index.html#kontak">Kontak</a>
+      </div>
+      <a href="index.html#keranjang" class="cart-icon"><i data-feather="shopping-cart"></i></a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="menu" id="produk">
+      <div class="container">
+        <h2>Semua <span>Produk</span></h2>
+        <input type="text" id="search" placeholder="Cari produk..." style="margin-bottom: 2rem; padding: 0.8rem; width: 100%; max-width: 400px; border-radius: 8px; border: 1px solid #ccc;">
+        <div class="menu-grid" id="list-produk"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script>
+    const produk = [
+      { nama: "Kemeja", harga: 100000, gambar: "kemeja.jpeg", deskripsi: "Kemeja pria bahan katun premium." },
+      { nama: "Celana", harga: 150000, gambar: "pants.jpeg", deskripsi: "Celana panjang pria bahan stretch nyaman." },
+      { nama: "Veterano", harga: 200000, gambar: "veterano.jpeg", deskripsi: "Jaket pria anti angin dan tahan air." },
+      { nama: "Blocktech", harga: 250000, gambar: "blocktech.jpeg", deskripsi: "Jaket teknologi tahan angin & hujan." },
+      { nama: "Overshirt", harga: 180000, gambar: "shirt.jpeg", deskripsi: "Kemeja overshirt pria bahan tebal." },
+      { nama: "Kaos Polos", harga: 85000, gambar: "kaos.jpg", deskripsi: "Kaos polos pria bahan combed 30s." },
+      { nama: "Hoodie", harga: 85000, gambar: "hoodie.jpg", deskripsi: "Hoodie pria bahan fleece nyaman." },
+      { nama: "Celana Pendek", harga: 70000, gambar: "celanap.jpg", deskripsi: "bahan nyaman tidak kusut"},
+    ];
+
+    const listProduk = document.getElementById("list-produk");
+    const searchInput = document.getElementById("search");
+
+    function tampilkanProduk(list) {
+      listProduk.innerHTML = "";
+      list.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "menu-item";
+        div.innerHTML = `
+          <img src="images/${item.gambar}" alt="${item.nama}" />
+          <h3>${item.nama}</h3>
+          <p>${item.deskripsi}</p>
+          <p><strong>Rp ${item.harga.toLocaleString("id-ID")}</strong></p>
+          <button class="btn" onclick="addToCart('${item.nama}', ${item.harga}, '${item.gambar}')">Beli Sekarang</button>
+        `;
+        listProduk.appendChild(div);
+      });
+    }
+
+    function addToCart(nama, harga, gambar) {
+      const keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+      keranjang.push({ nama, harga, gambar });
+      localStorage.setItem("keranjang", JSON.stringify(keranjang));
+      Toastify({
+        text: `${nama} ditambahkan ke keranjang!`,
+        duration: 2000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#0077cc",
+        close: true
+      }).showToast();
+
+      setTimeout(() => {
+        window.location.href = "index.html#keranjang";
+      }, 2200);
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      const keyword = e.target.value.toLowerCase();
+      const hasil = produk.filter((item) => item.nama.toLowerCase().includes(keyword));
+      tampilkanProduk(hasil);
+    });
+
+    tampilkanProduk(produk);
+  </script>
+  <script>feather.replace();</script>
+</body>
+</html>

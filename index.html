@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Man Mode.Id</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">ManMode<span>.ID</span></a>
+      <div class="nav-links">
+        <a href="#beranda">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="#keranjang">Keranjang</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+      <a href="#keranjang" class="cart-icon"><i data-feather="shopping-cart"></i></a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container hero-content">
+        <h1>Tampil Gaya Setiap Hari</h1>
+        <p>Fashion pria modern dan kekinian dari ManMode.ID</p>
+        <a href="produk.html" class="btn">Lihat Produk</a>
+      </div>
+    </section>
+
+    <section class="menu" id="produk">
+      <div class="container">
+        <h2>Produk <span>Unggulan</span></h2>
+        <div class="menu-grid">
+
+          <div class="menu-item">
+            <img src="images/kemeja.jpeg" alt="Kemeja" />
+            <h3>Kemeja</h3>
+            <p>Kemeja pria lengan panjang</p>
+            <p><strong>Rp 100.000</strong></p>
+            <button class="btn" onclick="tambahKeKeranjang('Kemeja', 100000)">Beli Sekarang</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="images/pants.jpeg" alt="Celana" />
+            <h3>Celana</h3>
+            <p>Celana pria casual</p>
+            <p><strong>Rp 150.000</strong></p>
+            <button class="btn" onclick="tambahKeKeranjang('Celana', 150000)">Beli Sekarang</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="images/veterano.jpeg" alt="Veterano" />
+            <h3>Veterano</h3>
+            <p>Jaket pria ringan dan stylish</p>
+            <p><strong>Rp 200.000</strong></p>
+            <button class="btn" onclick="tambahKeKeranjang('Veterano', 200000)">Beli Sekarang</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="images/blocktech.jpeg" alt="Blocktech" />
+            <h3>Blocktech</h3>
+            <p>Outer tahan angin dan hujan</p>
+            <p><strong>Rp 250.000</strong></p>
+            <button class="btn" onclick="tambahKeKeranjang('Blocktech', 250000)">Beli Sekarang</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="images/shirt.jpeg" alt="Overshirt" />
+            <h3>Overshirt</h3>
+            <p>Kemeja tebal bahan katun</p>
+            <p><strong>Rp 180.000</strong></p>
+            <button class="btn" onclick="tambahKeKeranjang('Overshirt', 180000)">Beli Sekarang</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="keranjang" class="contact">
+      <div class="container">
+        <h2>Keranjang <span>Belanja</span></h2>
+        <table class="tabel-keranjang">
+          <thead>
+            <tr>
+              <th>Gambar</th>
+              <th>Nama Produk</th>
+              <th>Harga</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="daftar-keranjang"></tbody>
+        </table>
+        <p style="margin-top: 1rem;"><strong>Total:</strong> Rp <span id="total-harga">0</span></p>
+
+        <button onclick="kosongkanKeranjang()" class="btn">Kosongkan</button>
+        <button onclick="checkoutWA()" class="btn">Checkout via WA</button>
+      </div>
+    </section>
+
+    <section class="about" id="tentang">
+      <div class="container">
+        <h2>Tentang <span>Kami</span></h2>
+        <div class="about-content">
+          <img src="images/beranda.jpeg" alt="Tentang Kami" />
+          <div>
+            <p>ManMode.ID adalah toko fashion pria modern yang menawarkan produk berkualitas dengan harga bersahabat.</p>
+            <p>Kami percaya bahwa penampilan terbaik dimulai dari pakaian yang tepat.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="kontak">
+      <div class="container">
+        <h2>Hubungi <span>Kami</span></h2>
+        <form>
+          <input type="text" placeholder="Nama" required />
+          <input type="email" placeholder="Email" required />
+          <textarea placeholder="Pesan..." required></textarea>
+          <button type="submit" class="btn">Kirim</button>
+        </form>
+        <div class="kontak-info">
+          <p><i class="fas fa-envelope"></i> <a href="mailto:manmodeid@email.com">manmodeid@email.com</a></p>
+          <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/6289652355671">0896 5235 5671</a></p>
+          <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/manmode.id">@manmode.id</a></p>
+          <p><i class="fas fa-map-marker-alt"></i> Jl. Toko Online No. 123, Bandung</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Man Mode.Id. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>
